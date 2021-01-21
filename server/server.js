@@ -1,6 +1,6 @@
 require("./config/config")
-const express = require("express");
-const mongoose = require('mongoose');
+const express = require("express")
+const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 
 const app = express();
@@ -11,11 +11,9 @@ app.use(bodyParser.urlencoded({ extended: false }))
 // parse application/json
 app.use(bodyParser.json())
 
-app.get("/", (req, res) => {
-    res.send('Hello world');
-})
+app.use(require('./routes'))
 
-mongoose.connect('mongodb://localhost:27017/usuarios', {
+mongoose.connect(process.env.BD, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: false,
